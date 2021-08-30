@@ -9,6 +9,7 @@ namespace Reflection
 {
     public static class Serializer
     {
+        private static string[] Delimiter = new string[] { "\r\n", "\n", "\r" };
 
         /************************************************************************
         Условие 1: Сериализовать/десериализовать CSV без сохранения в файл
@@ -22,8 +23,7 @@ namespace Reflection
         {
             F f = new F();
 
-            string[] Delimiter = new string[] { "\r\n", "\n", "\r" };
-            string[] Rows = csv.Split(Delimiter, StringSplitOptions.RemoveEmptyEntries);
+            string[] Rows = csv.Split(Serializer.Delimiter, StringSplitOptions.RemoveEmptyEntries);
             var CountHeaders = Rows[0].Split(',').Length;
             string[] Headers = new string[CountHeaders];
 
@@ -51,17 +51,16 @@ namespace Reflection
         /************************************************************************
         Условие 2: Сериализовать/десериализовать CSV с сохранением в файл 
         ************************************************************************/
-        public static void SerializeFromObjectToCSVFile(string FilePath, F obj)
+        public static void SerializeFromObjectToCSVFile(string filePath, F obj)
         {
-            CSVWriter(FilePath, CSVHeader(obj) + CSVValue(obj));
+            FileOperations.CSVWriter(filePath, CSVHeader(obj) + CSVValue(obj));
         }
 
-        public static F DeserializeFromCSVFileToObject(string FilePath)
+        public static F DeserializeFromCSVFileToObject(string filePath)
         {
             F f = new F();
-            string csv = CSVReader(FilePath);
-            string[] Delimiter = new string[] { "\r\n", "\n", "\r" };
-            string[] Rows = csv.Split(Delimiter, StringSplitOptions.RemoveEmptyEntries);
+            string csv = FileOperations.CSVReader(filePath);
+            string[] Rows = csv.Split(Serializer.Delimiter, StringSplitOptions.RemoveEmptyEntries);
             var CountHeaders = Rows[0].Split(',').Length;
             string[] Headers = new string[CountHeaders];
 
@@ -117,19 +116,19 @@ namespace Reflection
         /************************************************************************
         Условие 4: Сериализовать/десериализовать JSON с сохранением в файл 
         ************************************************************************/
-        public static void SerializeFromObjectToJSONFile(string FilePath, F obj)
+        public static void SerializeFromObjectToJSONFile(string filePath, F obj)
         {
             var jsonFormatter = new DataContractJsonSerializer(typeof(F));
-            using (var fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 jsonFormatter.WriteObject(fs, obj);
             }
         }
 
-        public static F DeserializeFromJSONFileToObject(string FilePath)
+        public static F DeserializeFromJSONFileToObject(string filePath)
         {
             var jsonFormatter = new DataContractJsonSerializer(typeof(F));
-            using (var fs = new FileStream(FilePath, FileMode.OpenOrCreate))
+            using (var fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 var f = jsonFormatter.ReadObject(fs) as F;
                 return f;
@@ -178,22 +177,6 @@ namespace Reflection
 
             value = value + Environment.NewLine;
             return value;
-        }
-
-        public static void CSVWriter(string FilePath, string CSVString)
-        {
-            using (var fs = new StreamWriter(FilePath))
-            {
-                fs.WriteLine(CSVString);
-            }
-        }
-
-        public static string CSVReader(string FilePath)
-        {
-            using (var fs = new StreamReader(FilePath))
-            {
-                return fs.ReadToEnd();
-            }
         }
     }
 }

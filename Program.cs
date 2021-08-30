@@ -16,11 +16,12 @@ namespace Reflection
             /************************************************************************
             Условие 1: Сериализовать/десериализовать CSV без сохранения в файл.
             ************************************************************************/
+            
             /*
-            //Начало Условие 1
+            
             DateTime dtStart = DateTime.Now;
 
-            for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 //Сериализация
                 F f = new F(1, 2, 3, 4, 5);
@@ -37,26 +38,15 @@ namespace Reflection
 
             Console.WriteLine($"Start: {dtStart}{Environment.NewLine}Finish: {DateTime.Now}{Environment.NewLine}Duration: {DateTime.Now.Subtract(dtStart)}");
 
-            //Результаты теста:
-
-            //Цикл 100000 итераций без вывода на консоль
-            //Start: 22.08.2021 23:42:34
-            //Finish: 22.08.2021 23:42:36
-            //Duration: 00:00:01.3137308
-
-            //Цикл 100000 итераций с выводом на консоль
-            //Start: 22.08.2021 23:44:16
-            //Finish: 22.08.2021 23:45:21
-            //Duration: 00:01:04.4306550
-
-            //Конец Условие 1
             */
+            
 
             /************************************************************************
             Условие 2: Сериализовать/десериализовать CSV с сохранением в файл.
             ************************************************************************/
+            
             /*
-            //Начало Условие 2
+            
             DateTime dtStart = DateTime.Now;
 
             for (int i = 0; i < 100000; i++)
@@ -72,14 +62,6 @@ namespace Reflection
 
             Console.WriteLine($"Start: {dtStart}{Environment.NewLine}Finish: {DateTime.Now}{Environment.NewLine}Duration: {DateTime.Now.Subtract(dtStart)}");
 
-            //Результаты теста:
-
-            //Цикл 100000 итераций без вывода на консоль
-            //Start: 26.08.2021 22:04:32
-            //Finish: 26.08.2021 22:07:34
-            //Duration: 00:03:01.8301611
-
-            //Конец Условие 2
             */
 
             /************************************************************************
@@ -87,7 +69,6 @@ namespace Reflection
             ************************************************************************/
 
             /*
-            //Начало Условие 3
 
             DateTime dtStart = DateTime.Now;
 
@@ -104,26 +85,12 @@ namespace Reflection
 
             Console.WriteLine($"Start: {dtStart}{Environment.NewLine}Finish: {DateTime.Now}{Environment.NewLine}Duration: {DateTime.Now.Subtract(dtStart)}");
 
-            //Результаты теста:
-
-            //Цикл 100000 итераций без вывода на консоль
-            //Start: 26.08.2021 23:25:06
-            //Finish: 26.08.2021 23:25:09
-            //Duration: 00:00:02.8499072
-
-            //Цикл 100000 итераций с выводом на консоль
-            //Start: 26.08.2021 23:25:47
-            //Finish: 26.08.2021 23:26:10
-            //Duration: 00:00:22.2223795
-
-            //Конец Условие 3
             */
 
             /************************************************************************
             Условие 4: Сериализовать/десериализовать JSON с сохранением в файл.
             ************************************************************************/
             /*
-            //Начало Условие 4
 
             DateTime dtStart = DateTime.Now;
 
@@ -140,14 +107,6 @@ namespace Reflection
 
             Console.WriteLine($"Start: {dtStart}{Environment.NewLine}Finish: {DateTime.Now}{Environment.NewLine}Duration: {DateTime.Now.Subtract(dtStart)}");
 
-            //Результаты теста:
-
-            //Цикл 100000 итераций без вывода на консоль
-            //Start: 26.08.2021 22:45:10
-            //Finish: 26.08.2021 22:47:38
-            //Duration: 00:02:27.9410906
-
-            //Конец Условие 4
             */
 
         }
